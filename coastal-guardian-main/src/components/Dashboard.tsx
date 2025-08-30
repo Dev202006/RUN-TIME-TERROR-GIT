@@ -188,7 +188,7 @@ const Dashboard = () => {
 
         {/* Center Column - Map */}
         <div className="lg:col-span-1">
-          <Card className="h-full">
+          <Card className="h-[50vh]">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <MapPin className="h-5 w-5 text-primary" />
@@ -205,7 +205,7 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column - Active Alerts & Logs */}
-        <div className="lg:col-span-1 space-y-6">
+        <div className="lg:col-span-1 space-y-6 max-h-[600px]">
           <AlertPanel threats={activeThreats} onUpdateThreat={setActiveThreats} />
           <OperationalLogger executedActions={executedActions} />
         </div>
