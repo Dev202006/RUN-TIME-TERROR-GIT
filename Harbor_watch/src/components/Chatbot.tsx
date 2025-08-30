@@ -38,7 +38,12 @@ const Chatbot: React.FC = () => {
   const sendMessage = async () => {
     if (inputValue.trim() === '') return;
 
-    const newUserMessage: Message = { role: 'user', content: inputValue };
+    // 🔹 Append word-limit instruction to every prompt
+    const newUserMessage: Message = { 
+      role: 'user', 
+      content: inputValue + " (Please answer concisely in under 80 words.)" 
+    };
+
     const allMessages = [...messages, newUserMessage];
     setMessages(allMessages);
     setInputValue('');
@@ -55,7 +60,7 @@ const Chatbot: React.FC = () => {
           model: GROQ_MODEL,
           messages: allMessages.map(msg => ({ role: msg.role, content: msg.content })),
           temperature: 0.7,
-          max_tokens: 150,
+          max_tokens: 150, // still keeps output short
         }),
       });
 
