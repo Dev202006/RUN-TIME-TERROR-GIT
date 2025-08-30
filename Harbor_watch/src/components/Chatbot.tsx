@@ -97,7 +97,7 @@ Priority Actions:
 
 ---
 
-Paste this as the chatbot’s **system/instruction prompt**. It will force action-centric, officer-grade answers even when fed only IMD/official inputs.
+all responses from your side should be normal text without bold italic underline or any formatting 
 ]
 `;
 
