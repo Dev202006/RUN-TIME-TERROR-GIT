@@ -1,73 +1,98 @@
-# Welcome to your Lovable project
 
-## Project info
 
-**URL**: https://lovable.dev/projects/00f3ded3-e0a2-41d5-b5b6-bf52c410ccfc
+# Harbor Watch
 
-## How can I edit this code?
+Harbor Watch is a modern web application for monitoring, analyzing, and visualizing coastal threats and environmental data. It provides real-time insights, interactive maps, and actionable recommendations to support coastal management, research, and decision-making.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/00f3ded3-e0a2-41d5-b5b6-bf52c410ccfc) and start prompting.
+- **Threat Visualization:** Interactive maps highlighting coastal threats and risk zones.
+- **Data Metrics:** Real-time and enhanced data panels for environmental monitoring.
+- **Action Recommendations:** Automated suggestions for effective coastal management.
+- **Operational Logging:** Track and review operational events and responses.
+- **Virtual Decision Assistant:** AI-powered assistant for informed decision support.
+- **Modern UI:** Built with reusable, accessible components and responsive design.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## Technologies Used
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **React** – Component-based UI library
+- **TypeScript** – Type-safe JavaScript
+- **Vite** – Fast build tool and development server
+- **Tailwind CSS** – Utility-first CSS framework
+- **shadcn-ui** – Modern UI component library
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+
+### Installation
+
+Clone the repository and install dependencies:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
+cd coastal-guardian-main
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Start the development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:5173` by default.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+coastal-guardian-main/
+├── public/                # Static assets
+├── src/
+│   ├── components/        # UI and feature components
+│   ├── hooks/             # Custom React hooks
+│   ├── lib/               # Utility functions
+│   ├── pages/             # Page-level components
+│   ├── App.tsx            # Main app component
+│   └── main.tsx           # Entry point
+├── package.json           # Project metadata and scripts
+├── tailwind.config.ts     # Tailwind CSS configuration
+├── vite.config.ts         # Vite configuration
+└── README.md              # Project documentation
+```
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## Usage
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+You can use Harbor Watch as a foundation for your own coastal monitoring or environmental data applications. The modular structure allows you to extend or replace components as needed for your use case.
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/00f3ded3-e0a2-41d5-b5b6-bf52c410ccfc) and click on Share -> Publish.
+## Contributing
 
-## Can I connect a custom domain to my Lovable project?
+Contributions are welcome! Please fork the repository and submit a pull request with your improvements or bug fixes.
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## Credits
+
+- UI components inspired by [shadcn/ui](https://ui.shadcn.com/)
+- Built with open-source technologies and community
