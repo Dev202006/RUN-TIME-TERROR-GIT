@@ -6,11 +6,8 @@ import {
   AlertTriangle, 
   MapPin, 
   Activity, 
-  Users, 
   Bell,
   Waves,
-  Wind,
-  Thermometer,
   Eye
 } from 'lucide-react';
 import GujaratThreatMap from './GujaratThreatMap';
@@ -19,6 +16,9 @@ import EnhancedDataMetrics from './EnhancedDataMetrics';
 import VirtualDecisionAssistant from './VirtualDecisionAssistant';
 import GraphsPanel from './GraphsPanel';
 import OperationalLogger from './OperationalLogger';
+
+// 👇 Import your chatbot
+import Chatbot from './Chatbot';
 
 export type ThreatLevel = 'safe' | 'watch' | 'warning' | 'critical';
 
@@ -177,8 +177,6 @@ const Dashboard = () => {
             onMetricClick={setSelectedLocation} 
             onGraphsView={() => setShowGraphs(true)} 
           />
-
-         
         </div>
 
         {/* Center Column - Map */}
@@ -192,21 +190,21 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent className="p-0 relative flex-1">
               <div className="absolute inset-0">
-              <GujaratThreatMap 
-                threats={activeThreats} 
-                onLocationClick={setSelectedLocation}
-              />
+                <GujaratThreatMap 
+                  threats={activeThreats} 
+                  onLocationClick={setSelectedLocation}
+                />
               </div>
             </CardContent>
           </Card>
 
-          {/*Assistant below map */}
+          {/* Assistant below map */}
           <div className="relative z-10">
-          <VirtualDecisionAssistant 
-            currentLevel={currentThreatLevel} 
-            threats={activeThreats}
-            onActionExecute={(actionId) => setExecutedActions(prev => [...prev, actionId])}
-          />
+            <VirtualDecisionAssistant 
+              currentLevel={currentThreatLevel} 
+              threats={activeThreats}
+              onActionExecute={(actionId) => setExecutedActions(prev => [...prev, actionId])}
+            />
           </div>
         </div>
 
@@ -230,6 +228,9 @@ const Dashboard = () => {
           </div>
         </div>
       )}
+
+      {/* 👇 Chatbot always floating bottom-right */}
+      <Chatbot />
     </div>
   );
 };
