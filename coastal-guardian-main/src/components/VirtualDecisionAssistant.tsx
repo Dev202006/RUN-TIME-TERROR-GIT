@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { 
-  Brain, 
-  Users, 
-  Megaphone, 
-  MapPin, 
+import {
+  Brain,
+  Users,
+  Megaphone,
+  MapPin,
   Clock,
   AlertTriangle,
   CheckCircle,
@@ -16,9 +16,7 @@ import {
   Target,
   Zap,
   Shield,
-  Phone,
   Building,
-  Truck
 } from 'lucide-react';
 
 type ThreatLevel = 'safe' | 'watch' | 'warning' | 'critical';
@@ -56,71 +54,76 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
   const [executedActions, setExecutedActions] = useState<Set<string>>(new Set());
 
   const getActionPlan = (): ActionStep[] => {
-    const criticalThreats = threats.filter(t => t.level === 'critical').length;
-    const warningThreats = threats.filter(t => t.level === 'warning').length;
-    
+    const criticalThreats = threats.filter((t) => t.level === 'critical').length;
+    const warningThreats = threats.filter((t) => t.level === 'warning').length;
+
     if (currentLevel === 'critical' || criticalThreats > 0) {
       return [
         {
           id: 'emergency-1',
           step: 1,
           action: 'Activate Emergency Operations Center',
-          description: 'Immediately activate the District Emergency Operations Center. Deploy all emergency response teams.',
+          description:
+            'Immediately activate the District Emergency Operations Center. Deploy all emergency response teams.',
           timeframe: 'Immediate (0-2 minutes)',
           responsible: 'District Collector',
           resources: ['Emergency Control Room', 'Communication Systems', 'Response Teams'],
           priority: 'critical',
           icon: <Building className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'emergency-2',
           step: 2,
           action: 'Issue Red Alert & Evacuation Orders',
-          description: 'Broadcast emergency evacuation orders for Veraval, Porbandar coastal areas. Use all communication channels.',
+          description:
+            'Broadcast emergency evacuation orders for Veraval, Porbandar coastal areas. Use all communication channels.',
           timeframe: 'Within 5 minutes',
           responsible: 'Emergency Coordinator',
           resources: ['All India Radio', 'Mobile Alert System', 'Public Address', 'TV Channels'],
           priority: 'critical',
           icon: <Megaphone className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'emergency-3',
           step: 3,
           action: 'Deploy Search & Rescue Teams',
-          description: 'Position NDRF, Coast Guard, and local rescue teams at strategic locations. Ensure helicopter support.',
+          description:
+            'Position NDRF, Coast Guard, and local rescue teams at strategic locations. Ensure helicopter support.',
           timeframe: 'Within 15 minutes',
           responsible: 'NDRF Commandant',
           resources: ['NDRF Teams', 'Coast Guard', 'Helicopters', 'Rescue Boats'],
           priority: 'critical',
           icon: <Users className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'emergency-4',
           step: 4,
           action: 'Open Emergency Shelters',
-          description: 'Activate all cyclone shelters, schools, and community centers. Ensure food, water, and medical supplies.',
+          description:
+            'Activate all cyclone shelters, schools, and community centers. Ensure food, water, and medical supplies.',
           timeframe: 'Within 20 minutes',
           responsible: 'Relief Commissioner',
           resources: ['Cyclone Shelters', 'Schools', 'Food Supplies', 'Medical Kits'],
           priority: 'high',
           icon: <Shield className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'emergency-5',
           step: 5,
           action: 'Secure Critical Infrastructure',
-          description: 'Shut down power in flood-prone areas. Secure ports, airports. Ensure hospital generators operational.',
+          description:
+            'Shut down power in flood-prone areas. Secure ports, airports. Ensure hospital generators operational.',
           timeframe: 'Within 30 minutes',
           responsible: 'Infrastructure Team',
           resources: ['Power Grid', 'Port Authority', 'Airport', 'Hospital Systems'],
           priority: 'high',
           icon: <Zap className="h-4 w-4" />,
-          status: 'pending'
-        }
+          status: 'pending',
+        },
       ];
     } else if (currentLevel === 'warning' || warningThreats > 0) {
       return [
@@ -128,13 +131,14 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
           id: 'warning-1',
           step: 1,
           action: 'Issue Orange Alert',
-          description: 'Send warning alerts to all residents in coastal areas. Advise to stay indoors and avoid sea-facing areas.',
+          description:
+            'Send warning alerts to all residents in coastal areas. Advise to stay indoors and avoid sea-facing areas.',
           timeframe: 'Within 10 minutes',
           responsible: 'Information Officer',
           resources: ['Emergency Broadcasting', 'Social Media', 'Local Announcements'],
           priority: 'high',
           icon: <AlertTriangle className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'warning-2',
@@ -146,20 +150,21 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
           resources: ['Traffic Personnel', 'Road Clearing Equipment', 'Emergency Vehicles'],
           priority: 'high',
           icon: <MapPin className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'warning-3',
           step: 3,
           action: 'Alert Vulnerable Communities',
-          description: 'Contact fishing communities, coastal villages, and vulnerable populations. Arrange transportation if needed.',
+          description:
+            'Contact fishing communities, coastal villages, and vulnerable populations. Arrange transportation if needed.',
           timeframe: 'Within 1 hour',
           responsible: 'Community Liaisons',
           resources: ['Community Leaders', 'Transportation', 'Communication Teams'],
           priority: 'medium',
           icon: <Users className="h-4 w-4" />,
-          status: 'pending'
-        }
+          status: 'pending',
+        },
       ];
     } else if (currentLevel === 'watch') {
       return [
@@ -173,7 +178,7 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
           resources: ['Weather Stations', 'IMD Coordination', 'Monitoring Equipment'],
           priority: 'medium',
           icon: <Clock className="h-4 w-4" />,
-          status: 'pending'
+          status: 'pending',
         },
         {
           id: 'watch-2',
@@ -185,11 +190,11 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
           resources: ['Response Teams', 'Equipment Check', 'Resource Inventory'],
           priority: 'medium',
           icon: <Shield className="h-4 w-4" />,
-          status: 'pending'
-        }
+          status: 'pending',
+        },
       ];
     }
-    
+
     return [
       {
         id: 'normal-1',
@@ -201,47 +206,52 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
         resources: ['Standard Equipment', 'Regular Staff'],
         priority: 'low',
         icon: <CheckCircle className="h-4 w-4" />,
-        status: 'pending'
-      }
+        status: 'pending',
+      },
     ];
   };
 
   const actionPlan = getActionPlan();
 
   const executeAction = (actionId: string) => {
-    setExecutedActions(prev => new Set([...prev, actionId]));
+    setExecutedActions((prev) => new Set([...prev, actionId]));
     onActionExecute(actionId);
   };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'critical': return 'bg-critical text-critical-foreground';
-      case 'high': return 'bg-warning text-warning-foreground';
-      case 'medium': return 'bg-watch text-watch-foreground';
-      case 'low': return 'bg-safe text-safe-foreground';
-      default: return 'bg-muted text-muted-foreground';
+      case 'critical':
+        return 'bg-critical text-critical-foreground';
+      case 'high':
+        return 'bg-warning text-warning-foreground';
+      case 'medium':
+        return 'bg-watch text-watch-foreground';
+      case 'low':
+        return 'bg-safe text-safe-foreground';
+      default:
+        return 'bg-muted text-muted-foreground';
     }
   };
 
   const getAlgorithmRecommendation = () => {
     const totalThreats = threats.length;
-    const criticalCount = threats.filter(t => t.level === 'critical').length;
+    const criticalCount = threats.filter((t) => t.level === 'critical').length;
     const avgSeverity = threats.reduce((sum, t) => sum + t.severity, 0) / totalThreats || 0;
-    
-    let recommendation = "MAINTAIN STANDARD OPERATIONS";
+
+    let recommendation = 'MAINTAIN STANDARD OPERATIONS';
     let confidence = 95;
-    
+
     if (criticalCount > 0 || avgSeverity > 8) {
-      recommendation = "IMMEDIATE EMERGENCY RESPONSE REQUIRED";
+      recommendation = 'IMMEDIATE EMERGENCY RESPONSE REQUIRED';
       confidence = 98;
     } else if (currentLevel === 'warning' || avgSeverity > 6) {
-      recommendation = "ACTIVATE PREPAREDNESS MEASURES";
+      recommendation = 'ACTIVATE PREPAREDNESS MEASURES';
       confidence = 92;
     } else if (currentLevel === 'watch' || avgSeverity > 4) {
-      recommendation = "ENHANCED MONITORING RECOMMENDED";
+      recommendation = 'ENHANCED MONITORING RECOMMENDED';
       confidence = 88;
     }
-    
+
     return { recommendation, confidence };
   };
 
@@ -253,6 +263,19 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
         <CardTitle className="flex items-center space-x-2">
           <Brain className="h-5 w-5 text-primary" />
           <span>AI Decision Assistant</span>
+          <Badge
+            className={`ml-2 text-xs ${
+              currentLevel === 'critical'
+                ? 'bg-critical text-critical-foreground'
+                : currentLevel === 'warning'
+                ? 'bg-warning text-warning-foreground'
+                : currentLevel === 'watch'
+                ? 'bg-watch text-watch-foreground'
+                : 'bg-safe text-safe-foreground'
+            }`}
+          >
+            {currentLevel.toUpperCase()}
+          </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -295,7 +318,7 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                   <div className="space-y-4">
                     {actionPlan.map((action) => {
                       const isExecuted = executedActions.has(action.id);
-                      
+
                       return (
                         <div
                           key={action.id}
@@ -305,9 +328,13 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                         >
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center space-x-3">
-                              <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                                isExecuted ? 'bg-safe text-safe-foreground' : 'bg-primary text-primary-foreground'
-                              }`}>
+                              <div
+                                className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                                  isExecuted
+                                    ? 'bg-safe text-safe-foreground'
+                                    : 'bg-primary text-primary-foreground'
+                                }`}
+                              >
                                 {isExecuted ? <CheckCircle className="h-4 w-4" /> : action.step}
                               </div>
                               <div>
@@ -322,11 +349,9 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                               {action.priority.toUpperCase()}
                             </Badge>
                           </div>
-                          
-                          <p className="text-sm text-muted-foreground mb-3 ml-11">
-                            {action.description}
-                          </p>
-                          
+
+                          <p className="text-sm text-muted-foreground mb-3 ml-11">{action.description}</p>
+
                           <div className="ml-11 space-y-2">
                             <div className="flex items-center space-x-4 text-xs">
                               <div className="flex items-center space-x-1">
@@ -334,7 +359,7 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                                 <span className="text-muted-foreground">Responsible: {action.responsible}</span>
                               </div>
                             </div>
-                            
+
                             <div className="flex flex-wrap gap-1">
                               {action.resources.map((resource, index) => (
                                 <Badge key={index} variant="outline" className="text-xs">
@@ -342,14 +367,10 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                                 </Badge>
                               ))}
                             </div>
-                            
+
                             <div className="flex justify-end pt-2">
                               {!isExecuted ? (
-                                <Button
-                                  size="sm"
-                                  onClick={() => executeAction(action.id)}
-                                  className="text-xs"
-                                >
+                                <Button size="sm" onClick={() => executeAction(action.id)} className="text-xs">
                                   Execute Action
                                   <ArrowRight className="h-3 w-3 ml-1" />
                                 </Button>
@@ -369,12 +390,12 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
               </DialogContent>
             </Dialog>
           </div>
-          
+
           {/* Quick Actions Preview */}
           <div className="space-y-2">
             {actionPlan.slice(0, 3).map((action) => {
               const isExecuted = executedActions.has(action.id);
-              
+
               return (
                 <div
                   key={action.id}
@@ -383,9 +404,11 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <div className={`flex items-center justify-center w-6 h-6 rounded-full text-xs ${
-                      isExecuted ? 'bg-safe text-safe-foreground' : 'bg-primary text-primary-foreground'
-                    }`}>
+                    <div
+                      className={`flex items-center justify-center w-6 h-6 rounded-full text-xs ${
+                        isExecuted ? 'bg-safe text-safe-foreground' : 'bg-primary text-primary-foreground'
+                      }`}
+                    >
                       {isExecuted ? <CheckCircle className="h-3 w-3" /> : action.step}
                     </div>
                     <div>
@@ -393,38 +416,20 @@ const VirtualDecisionAssistant = ({ currentLevel, threats, onActionExecute }: Vi
                       <p className="text-xs text-muted-foreground">{action.timeframe}</p>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <Badge className={`${getPriorityColor(action.priority)} text-xs`}>
-                      {action.priority}
+                  {!isExecuted ? (
+                    <Button size="sm" onClick={() => executeAction(action.id)} className="text-xs">
+                      Execute
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Button>
+                  ) : (
+                    <Badge className="bg-safe text-safe-foreground text-xs flex items-center space-x-1">
+                      <CheckCircle className="h-3 w-3" />
+                      <span>Done</span>
                     </Badge>
-                    {!isExecuted && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => executeAction(action.id)}
-                        className="h-6 px-2 text-xs"
-                      >
-                        Execute
-                      </Button>
-                    )}
-                  </div>
+                  )}
                 </div>
               );
             })}
-            
-            {actionPlan.length > 3 && (
-              <div className="text-center pt-2">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" size="sm" className="text-xs">
-                      View all {actionPlan.length} actions
-                      <ArrowRight className="h-3 w-3 ml-1" />
-                    </Button>
-                  </DialogTrigger>
-                </Dialog>
-              </div>
-            )}
           </div>
         </div>
       </CardContent>
