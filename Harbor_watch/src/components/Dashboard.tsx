@@ -37,7 +37,7 @@ const Dashboard = () => {
   const [activeThreats, setActiveThreats] = useState<ThreatData[]>([
     {
       id: '1',
-      location: 'Veraval Port',
+      location: 'Okha Port',
       level: 'critical',
       type: 'Cyclone Alert',
       timestamp: new Date(),
@@ -46,7 +46,7 @@ const Dashboard = () => {
     },
     {
       id: '2',
-      location: 'Porbandar Coast',
+      location: 'Dwarka Shore',
       level: 'warning',
       type: 'High Tidal Surge',
       timestamp: new Date(),
@@ -55,7 +55,7 @@ const Dashboard = () => {
     },
     {
       id: '3',
-      location: 'Dwarka Shore',
+      location: 'Beyt Dwarka',
       level: 'watch',
       type: 'Strong Winds',
       timestamp: new Date(),
