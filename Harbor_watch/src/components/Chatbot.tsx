@@ -38,14 +38,19 @@ const Chatbot: React.FC = () => {
   const sendMessage = async () => {
     if (inputValue.trim() === '') return;
 
-    // 🔹 Append word-limit instruction to every prompt
-    const newUserMessage: Message = { 
+    // 1. Show user's *original input* in UI
+    const newUserMessage: Message = { role: 'user', content: inputValue };
+    setMessages(prev => [...prev, newUserMessage]);
+
+    // 2. Create augmented version for API
+    const augmentedUserMessage: Message = { 
       role: 'user', 
       content: inputValue + " (Please answer concisely in under 80 words.)" 
     };
 
-    const allMessages = [...messages, newUserMessage];
-    setMessages(allMessages);
+    // 3. Build conversation history for API (swap last user message with augmented one)
+    const apiMessages = [...messages, augmentedUserMessage];
+
     setInputValue('');
     setIsLoading(true);
 
@@ -58,9 +63,9 @@ const Chatbot: React.FC = () => {
         },
         body: JSON.stringify({
           model: GROQ_MODEL,
-          messages: allMessages.map(msg => ({ role: msg.role, content: msg.content })),
+          messages: apiMessages.map(msg => ({ role: msg.role, content: msg.content })),
           temperature: 0.7,
-          max_tokens: 150, // still keeps output short
+          max_tokens: 150, // short enough for UI
         }),
       });
 
