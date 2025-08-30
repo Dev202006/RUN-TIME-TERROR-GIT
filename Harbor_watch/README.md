@@ -40,7 +40,7 @@ Clone the repository and install dependencies:
 
 ```sh
 git clone <YOUR_GIT_URL>
-cd coastal-guardian-main
+cd harbor-watch
 npm install
 ```
 
@@ -57,7 +57,7 @@ The app will be available at `http://localhost:5173` by default.
 ## Project Structure
 
 ```
-coastal-guardian-main/
+harbor-watch/
 ├── public/                # Static assets
 ├── src/
 │   ├── components/        # UI and feature components
