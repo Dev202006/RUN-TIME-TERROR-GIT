@@ -1,3 +1,4 @@
+// Dashboard.tsx
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -100,6 +101,15 @@ const Dashboard = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // 👇 Build AI context string from current dashboard state
+  const aiContext = `
+    Current threat level: ${currentThreatLevel}.
+    Active threats count: ${activeThreats.length}.
+    Critical alerts: ${activeThreats.filter(t => t.level === 'critical').length}.
+    Active threats summary: 
+    ${activeThreats.map(t => `${t.location} - ${t.type} (${t.level}, severity ${t.severity.toFixed(1)})`).join('; ')}
+  `;
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
@@ -214,25 +224,3 @@ const Dashboard = () => {
           <OperationalLogger executedActions={executedActions} />
         </div>
       </div>
-
-      {/* Graphs Panel Modal */}
-      {showGraphs && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-6xl max-h-[90vh] overflow-auto">
-            <div className="flex justify-end mb-4">
-              <Button variant="outline" onClick={() => setShowGraphs(false)}>
-                Close Graphs
-              </Button>
-            </div>
-            <GraphsPanel />
-          </div>
-        </div>
-      )}
-
-      {/* 👇 Chatbot always floating bottom-right */}
-      <Chatbot />
-    </div>
-  );
-};
-
-export default Dashboard;
