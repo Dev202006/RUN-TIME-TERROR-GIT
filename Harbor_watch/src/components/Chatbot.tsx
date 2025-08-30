@@ -7,7 +7,7 @@ import { MessageSquare, Send, X } from 'lucide-react'; // Icons
 
 // !! WARNING: Storing API key in frontend is INSECURE !!
 // For demo purposes only. In production, use a backend proxy.
-const GROQ_API_KEY = "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"; 
+const GROQ_API_KEY = "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";
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama3-8b-8192"; // or "mixtral-8x7b-32768", "llama3-70b-8192"
 
@@ -16,7 +16,12 @@ interface Message {
   content: string;
 }
 
-const Chatbot: React.FC = () => {
+// Accept a context string from the dashboard
+interface ChatbotProps {
+  context?: string; // summarized app state (live data)
+}
+
+const Chatbot: React.FC<ChatbotProps> = ({ context }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: "Hello! I'm your Harbor Watch AI. How can I assist you with coastal data today?" }
@@ -38,18 +43,40 @@ const Chatbot: React.FC = () => {
   const sendMessage = async () => {
     if (inputValue.trim() === '') return;
 
-    // 1. Show user's *original input* in UI
+    // 1) UI shows exactly what the user typed
     const newUserMessage: Message = { role: 'user', content: inputValue };
     setMessages(prev => [...prev, newUserMessage]);
 
-    // 2. Create augmented version for API
-    const augmentedUserMessage: Message = { 
-      role: 'user', 
-      content: inputValue + " (Please answer concisely in under 80 words.)" 
+    // 2) Prepare an augmented user message for the API (not shown in UI)
+    const augmentedUserForApi = {
+      role: 'user',
+      content: inputValue + " (Please answer concisely in under 80 words.)",
     };
 
-    // 3. Build conversation history for API (swap last user message with augmented one)
-    const apiMessages = [...messages, augmentedUserMessage];
+    // 3) Build the conversation history to send to the API
+    //    Start with the latest app context as a hidden system message (if provided)
+    type ApiMessage = { role: 'system' | 'user' | 'assistant'; content: string };
+
+    const historyForApi: ApiMessage[] = messages.map(m => ({
+      role: m.role,
+      content: m.content,
+    })) as ApiMessage[];
+
+    const systemContext: ApiMessage | null = context
+      ? {
+          role: 'system',
+          content:
+            "Use the following live app context when answering. " +
+            "If the user asks about data, prefer this context over guesses.\n" +
+            context,
+        }
+      : null;
+
+    const apiMessages: ApiMessage[] = [
+      ...(systemContext ? [systemContext] : []),
+      ...historyForApi,
+      augmentedUserForApi,
+    ];
 
     setInputValue('');
     setIsLoading(true);
@@ -63,9 +90,9 @@ const Chatbot: React.FC = () => {
         },
         body: JSON.stringify({
           model: GROQ_MODEL,
-          messages: apiMessages.map(msg => ({ role: msg.role, content: msg.content })),
+          messages: apiMessages,
           temperature: 0.7,
-          max_tokens: 150, // short enough for UI
+          max_tokens: 150, // keep output short for UI; we also enforce 80-word limit in the prompt
         }),
       });
 
@@ -74,13 +101,16 @@ const Chatbot: React.FC = () => {
       }
 
       const data = await response.json();
-      const botResponseContent = data.choices[0]?.message?.content || 
-        "Sorry, I couldn't get a response.";
-      setMessages(prev => [...prev, { role: 'assistant', content: botResponseContent }]);
+      const botResponseContent =
+        data.choices?.[0]?.message?.content || "Sorry, I couldn't get a response.";
 
+      setMessages(prev => [...prev, { role: 'assistant', content: botResponseContent }]);
     } catch (error) {
       console.error("Error sending message to Groq API:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "Oops! Something went wrong. Please try again." }]);
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: "Oops! Something went wrong. Please try again." },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -131,6 +161,7 @@ const Chatbot: React.FC = () => {
                 </div>
               </div>
             ))}
+
             {isLoading && (
               <div className="flex justify-start">
                 <div className="max-w-[75%] p-3 rounded-lg bg-muted text-foreground">
@@ -142,6 +173,7 @@ const Chatbot: React.FC = () => {
                 </div>
               </div>
             )}
+
             <div ref={messagesEndRef} /> {/* For auto-scrolling */}
           </div>
 
