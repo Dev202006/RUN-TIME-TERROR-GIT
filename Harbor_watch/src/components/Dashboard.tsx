@@ -127,10 +127,7 @@ const Dashboard = () => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <Button variant="outline" size="sm">
-            <Bell className="h-4 w-4 mr-2" />
-            Notifications
-          </Button>
+          
           <div className="text-sm text-muted-foreground">
             Last Update: {new Date().toLocaleTimeString()}
           </div>
