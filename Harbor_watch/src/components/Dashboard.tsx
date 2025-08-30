@@ -108,7 +108,7 @@ const Dashboard = () => {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <Waves className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-bold">Coastal Threat Alert System</h1>
+            <h1 className="text-3xl font-bold">Harbor Watch: Coastal Threat Alert System</h1>
           </div>
           <Badge 
             className={`${getThreatLevelColor(currentThreatLevel)} flex items-center space-x-1 px-3 py-1`}
