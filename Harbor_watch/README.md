@@ -92,5 +92,5 @@ You can use Harbor Watch as a foundation for your own coastal monitoring or envi
 - **Cloud Deployment**: Host on scalable cloud infrastructure for high availability and real-time processing.  
 
 ## TEAM DETAILS
--**TEAM NAME**: Runtime Terrors
--**NAMES**: Sruja Brahmbhatt, Vismay Shah, Dev Chauhan from Pandit Deendayal Energy University, Dept. of Computer Science and Engineering
+-**TEAM NAME**: Runtime Terrors. 
+-**AUTHOR NAMES**: Sruja Brahmbhatt, Vismay Shah, Dev Chauhan from Pandit Deendayal Energy University, Dept. of Computer Science and Engineering
