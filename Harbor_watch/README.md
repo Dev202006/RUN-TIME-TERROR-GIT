@@ -2,28 +2,52 @@
 
 # Harbor Watch
 
-Harbor Watch is a modern web application for monitoring, analyzing, and visualizing coastal threats and environmental data. It provides real-time insights, interactive maps, and actionable recommendations to support coastal management, research, and decision-making.
+Harbor Watch is an innovative real-time coastal threat monitoring and alert system built during a hackathon.  
+It leverages **React, Node.js, geospatial visualization, and AI/ML-based analysis** to provide authorities and communities with early warnings about coastal risks such as **erosion, flooding, cyclones, and tidal surges**
 
 ---
 
-## Features
+## 🚀 Features
 
-- **Threat Visualization:** Interactive maps highlighting coastal threats and risk zones.
-- **Data Metrics:** Real-time and enhanced data panels for environmental monitoring.
-- **Action Recommendations:** Automated suggestions for effective coastal management.
-- **Operational Logging:** Track and review operational events and responses.
-- **Virtual Decision Assistant:** AI-powered assistant for informed decision support.
-- **Modern UI:** Built with reusable, accessible components and responsive design.
+- **Interactive Map Dashboard**  
+  Displays Gujarat’s coastline with precise **city markers** and threat zones.
+
+- **Threat Level Classification**  
+  Each location is marked with status:  
+  - ✅ Safe  
+  - 👁 Watch  
+  - ⚠ Warning  
+  - 🔴 Critical  
+
+- **AI-based Predictions (Future Scope)**  
+  Integration of ML models to predict shoreline change and identify potential vulnerable zones.
+
+- **Customizable Alerts**  
+  Authorities can configure and push warnings for specific coastal towns.
+
+- **Grid-Aligned Map Layout**  
+  Map visualization remains properly aligned within the dashboard grid for clarity.
+
+- **Modular Frontend (React + Tailwind + shadcn/ui)**  
+  - Card-based UI for threat summaries.  
+  - Badges for quick status recognition.  
+  - Lucide icons for visual clarity.  
+
+- **Extensible Backend (Planned)**  
+  - APIs for integrating government databases, weather APIs, and IoT sensors.  
+  - Support for real-time data ingestion.
 
 ---
 
 ## Technologies Used
 
-- **React** – Component-based UI library
-- **TypeScript** – Type-safe JavaScript
-- **Vite** – Fast build tool and development server
-- **Tailwind CSS** – Utility-first CSS framework
-- **shadcn-ui** – Modern UI component library
+- **Frontend**: React + Tailwind CSS + shadcn/ui + Recharts  
+- **Icons & UI**: lucide-react, custom components  
+- **Map Visualization**: Custom image grid + coordinate-based city plotting  
+- **Backend (Planned)**: Node.js / Express  
+- **Database (Planned)**: PostgreSQL / MongoDB  
+- **Chatbot API**: GROQ (uses LLAMA 3.0)  
+- **Deployment**: Vercel 
 
 ---
 
@@ -34,25 +58,6 @@ Harbor Watch is a modern web application for monitoring, analyzing, and visualiz
 - [Node.js](https://nodejs.org/) (v16+ recommended)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
 
-### Installation
-
-Clone the repository and install dependencies:
-
-```sh
-git clone <YOUR_GIT_URL>
-cd harbor-watch
-npm install
-```
-
-Start the development server:
-
-```sh
-npm run dev
-```
-
-The app will be available at `http://localhost:5173` by default.
-
----
 
 ## Project Structure
 
@@ -74,25 +79,23 @@ harbor-watch/
 
 ---
 
-## Usage
+## Usage and Use cases
 
 You can use Harbor Watch as a foundation for your own coastal monitoring or environmental data applications. The modular structure allows you to extend or replace components as needed for your use case.
 
----
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your improvements or bug fixes.
-
----
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+-**Government Agencies**: Real-time monitoring of erosion and floods.
+-**Disaster Management Teams**: Quick deployment of resources during critical alerts.
+-**Researchers**: Study climate impacts on Gujarat’s coastline.
+-**Communities**: Awareness and preparedness for natural disasters.
 
 ---
 
-## Credits
 
-- UI components inspired by [shadcn/ui](https://ui.shadcn.com/)
-- Built with open-source technologies and community
+## 🔮 Future Enhancements
+
+- **IoT Sensor Integration**: Deploy real-time monitoring using buoys, tide meters, and coastal sensors.  
+- **Satellite & AI Analysis**: Use satellite imagery with AI/ML models for shoreline prediction and erosion tracking.  
+- **Mobile Application**: Deliver alerts and updates directly to citizens via a user-friendly mobile app.  
+- **Cloud Deployment**: Host on scalable cloud infrastructure for high availability and real-time processing.  
+
+
