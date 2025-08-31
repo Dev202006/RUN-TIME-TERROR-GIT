@@ -51,8 +51,6 @@ It leverages **React, Node.js, geospatial visualization, and AI/ML-based analysi
 
 ---
 
-## Getting Started
-
 
 ## Project Structure
 
