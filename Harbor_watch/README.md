@@ -53,11 +53,6 @@ It leverages **React, Node.js, geospatial visualization, and AI/ML-based analysi
 
 ## Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v16+ recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
-
 
 ## Project Structure
 
