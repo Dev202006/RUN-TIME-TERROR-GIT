@@ -91,4 +91,6 @@ You can use Harbor Watch as a foundation for your own coastal monitoring or envi
 - **Mobile Application**: Deliver alerts and updates directly to citizens via a user-friendly mobile app.  
 - **Cloud Deployment**: Host on scalable cloud infrastructure for high availability and real-time processing.  
 
-
+## TEAM DETAILS
+-**TEAM NAME**: Runtime Terrors
+-**NAMES**: Sruja Brahmbhatt, Vismay Shah, Dev Chauhan from Pandit Deendayal Energy University, Dept. of Computer Science and Engineering
